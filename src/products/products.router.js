@@ -1,6 +1,6 @@
 const productServices = require('./products.services')
 
-const router = requier('express').Router()
+const router = require('express').Router()
 
 router.get('/products', productServices.getAllProducts)
 
