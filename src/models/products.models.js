@@ -10,8 +10,16 @@ const Products = db.define('products', {
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false, //? Not null
-    defaultValue: 'Desconocido',
-    unique: true
+    allowNull: false //? Not null
+  },
+  price: {
+    type: DataTypes.DECIMAL,
+    allowNull: false
+  },
+  imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
-})  
+})
+
+module.exports = Products

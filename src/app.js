@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.json({
     message: 'Server OK!',
     routes: {
-      products: 'http.//localhost:9000/api/v1/products'
+      products: 'http://localhost:9000/api/v1/products'
     }
   })
 })

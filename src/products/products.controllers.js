@@ -1,3 +1,5 @@
+const Products = require('../models/products.models')
+
 const productDB = [
   {
     id: 1,
@@ -16,11 +18,22 @@ const productDB = [
 let baseId = 2
 
 const findAllProducts = async () => {
-  return await productDB
+  //! return await productDB
+
+  const data = await Products.findAll()
+
+  return data
 }
 
-const findProductById = async () => {
-  const data = productDB.find(product => product.id === id)
+const findProductById = async (id) => {
+  //! const data = productDB.find(product => product.id === id)
+  //! return data
+
+  const data = await Products.findOne({
+    where: {
+      id: id
+    }
+  })
   return data
 }
 
@@ -36,19 +49,53 @@ const ffindProdductByIdWithPromises = (id) => {
 }
 
 const createNewProduct = async (prodObj) => {
+  //!   const newProduct = {
+  //!     id: ++baseId,
+  //!     title: prodObj.title,
+  //!     price: prodObj.price,
+  //!     img_url: prodObj.image_url
+  //!   }
+  //! 
+  //!   await productDB.push(newProduct)
+  //!   return newProduct
+
   const newProduct = {
-    id: ++baseId,
     title: prodObj.title,
     price: prodObj.price,
-    img_url: prodObj.image_url
+    imageUrl: prodObj.imageUrl
   }
 
-  await productDB.push(newProduct)
-  return newProduct
+  const data = await Products.create(newProduct)
+
+  return data
+}
+
+const updateProduct = async (id, productObj) => {
+  const data = await Products.update(productObj, {
+    where: {
+      id: id
+    }
+  })
+  return data
+  //? [1] => La cantidad de productos que han sido modificados
+  //? [0] => Error en caso de que el where no haya encontrado coincidencias -> el id no existe
+}
+
+const deleteProduct = async (id) => {
+  const data = await Products.destroy({
+    where: {
+      id: id
+    }
+  })
+  return data
+  //? 1 => confirmación de qque el producto se eliminnó correctamente
+  //? 0 => el id que le mandamos no existe  
 }
 
 module.exports = {
   findAllProducts,
   findProductById,
-  createNewProduct
+  createNewProduct,
+  updateProduct,
+  deleteProduct
 }
