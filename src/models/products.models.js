@@ -22,4 +22,4 @@ const Products = db.define('products', {
   }
 })
 
-module.exports = Products
+module.exports = Products 

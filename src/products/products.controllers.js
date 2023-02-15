@@ -1,22 +1,5 @@
 const Products = require('../models/products.models')
 
-const productDB = [
-  {
-    id: 1,
-    title: 'Xbox serie X',
-    price: '600 USD',
-    image_url: 'https://coolboxpe.vtexassets.com/arquivos/ids/211102-800-450?v=637873787853270000&width=800&height=450&aspect=true'
-  },
-  {
-    id: 2,
-    title: 'Play Station 5',
-    price: '700 USD',
-    image_url: 'https://coolboxpe.vtexassets.com/arquivos/ids/211102-800-450?v=637873787853270000&width=800&height=450&aspect=true'
-  }
-]
-
-let baseId = 2
-
 const findAllProducts = async () => {
   //! return await productDB
 
@@ -37,16 +20,16 @@ const findProductById = async (id) => {
   return data
 }
 
-const ffindProdductByIdWithPromises = (id) => {
-  return new Promise((resolve, reject) => {
-    const data = productDB.find(product => product.id === id)
-    if (data) {
-      resolve(data)
-    } else {
-      reject('Invalid ID')
-    }
-  })
-}
+// const ffindProdductByIdWithPromises = (id) => {
+//   return new Promise((resolve, reject) => {
+//     const data = productDB.find(product => product.id === id)
+//     if (data) {
+//       resolve(data)
+//     } else {
+//       reject('Invalid ID')
+//     }
+//   })
+// }
 
 const createNewProduct = async (prodObj) => {
   //!   const newProduct = {
@@ -76,7 +59,7 @@ const updateProduct = async (id, productObj) => {
       id: id
     }
   })
-  return data
+  return data[0] //? Accedemos a la posición 0 para retornar directamente la confirmación
   //? [1] => La cantidad de productos que han sido modificados
   //? [0] => Error en caso de que el where no haya encontrado coincidencias -> el id no existe
 }
