@@ -2,6 +2,7 @@
 const express = require('express')
 const productRouter = require('./products/products.router')
 const db = require('./utils/database')
+const initModels = require('./models/initModels')
 
 //? Initial configs
 const app = express()
@@ -23,6 +24,8 @@ db.sync() //? Sincroniza nuestra base de datos con los modelos que tenemos defin
   .catch((err) => {
     console.log(err);  //! Error en las tablas, propiedades, etc
   })
+
+initModels()
 
 //* Como nosotros podemos recibir info o data del cliente
 
